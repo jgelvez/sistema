@@ -18,11 +18,13 @@ Route::get('/', function () {
     return view('auth.login');
 });
 
-Route::resource('empleado', EmpleadoController::class);
+Route::resource('empleado', EmpleadoController::class)->middleware('auth');
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::group(['middleware' => 'auth']
+
+Route::group(['middleware' => 'auth'], function (){
+    Route::get('/', [EmpleadoController::class, 'index'])->name('home');
+}
 
 );

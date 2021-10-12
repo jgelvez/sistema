@@ -1,7 +1,7 @@
 @if (Session::has('mensaje'))
     {{ Session::get('mensaje') }}
 @endif
-
+<script src="https://cdn.ckeditor.com/ckeditor5/30.0.0/classic/ckeditor.js"></script>
 <a href="{{ url('empleado/create') }}"> Registro nuevo</a>
 <table>
     <thead>
@@ -41,3 +41,13 @@
     </tbody>
    
 </table>
+<div id="editor">
+    <p>This is some sample content.</p>
+</div>
+<script>
+    ClassicEditor
+        .create( document.querySelector( '#editor' ) )
+        .catch( error => {
+            console.error( error );
+        } );
+</script>
